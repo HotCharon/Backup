@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DIRECT=$1
+ARCH=$2
+
+mkdir $DIRECT
+
+shift 2
+
+for ARG in "$@"
+do
+	find ~ -name "$ARG" -type f -exec cp --parents {} ./$DIRECT \;
+done
+tar -czf $ARCH.tar ./$DIRECT
+
+echo "done"
